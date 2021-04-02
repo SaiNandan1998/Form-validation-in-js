@@ -1,0 +1,47 @@
+    <style>
+#usn,#psw
+    {
+  width: 30%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border:none;
+  background-color: aliceblue;
+    }
+    
+    #sub{
+    width:10%;
+    padding:10px;
+    margin:10px; 
+    
+    }
+    
+    #reg{
+      width:10%;
+    padding:10px 40px 10px 40px;
+    margin:10px; 
+    color:black;
+    display: :block;
+    text-decoration:none;  
+    border:1px solid black;
+        }
+        
+    #reg:hover{
+       background-color:skyblue;
+       color:white;
+       border:none;
+    }
+    
+    #sub:hover{
+        background-color:skyblue;
+        color:white;   
+        border: none;
+    }
+    
+    h1
+    {
+     text-align: center;
+     background-color:skyblue;
+     padding:30px;
+     
+    }
+</style>
