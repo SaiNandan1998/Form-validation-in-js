@@ -5,8 +5,7 @@
 <head>
 
    <meta charset="UTF-8">
-   
-   <meta name="viewport" content="width=device-width","initial-scale=1.0">
+   <meta name="viewport" content="width=device-width","intial-scale=1.0">
    <title> SBI  login </title>
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
@@ -26,26 +25,24 @@ $(document).ready(function(){
     var usn = $("#usn").val();
     var ps  = $("#psw").val();
      
-    if (usn.length>=3 && ps.length>=3 ){
          
         for(var key in uspw){
                if(usn == key){
                  var pw = uspw[usn];
 				 if(ps == pw){
-                  alert("validation success");
                   return true;
                }
                  if(ps!= pw){
-                  alert("you entered invalid username or password");
+                  alert("please enter valid password");
                   return false;
               }
-          }}
+          }else{
+			    alert("please enter valid username")
+				return false;
+			   }
+		  }
 
-	}
-    else{
-      alert("please enter username and password and it should be minimum 3 characters")
-        return false;
-    }
+	
 	
     
     })
@@ -111,14 +108,14 @@ $(document).ready(function(){
 <h1><img src="image/sbi.png" height="25px" width="25px" alt="sbi logo"> SBI login </h1><br>
 
 <label for="username"> Username : </label><br>
-<input type="text" size="40" id="usn" name="username" placeholder="enter username"  pettern="[A-Za-z0-9-]" required><br>
+<input type="text" size="40" id="usn" name="username" placeholder="enter username"  required><br>
     
 <label for="password">Password : </label><br>
 <input type="password"   size="40" id="psw" name="psw" placeholder="enter password securely"  required><br> 
 
 <input type="submit" id="sub" name="sub" value="Login">
     
-<a href="index8.html" target="_blank" id="reg">register</a>
+<a href="indexvalidation.html" target="_blank" id="reg">register</a>
 
 </form>
 

@@ -14,7 +14,30 @@ $(document).ready(function(){
      var usn=["nandan","laskshmi","sai","diana"]
      
      var mf =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	 
+	  
+	  
+	 function validate(password) {
+     var minMaxLength = /^[\s\S]{8,32}$/,
+        upper = /[A-Z]/,
+        lower = /[a-z]/,
+        number = /[0-9]/,
+        special = /[ !"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/;
+
+    if (minMaxLength.test(password) &&
+        upper.test(password) &&
+        lower.test(password) &&
+        number.test(password) &&
+        special.test(password)) {
+        return true;
+    }
+
+    return false;
+    }
+	 
     
+	
+	
 $("#sub").click(function(){
    var fn = $("#fn").val();
    var ls = $("#ls").val();
@@ -30,87 +53,108 @@ $("#sub").click(function(){
    var cdt= new Date();
    
    sessionStorage.setItem("usn",un);
-    
    
-  if(fn =="null" || fn==""){
-      alert(" please  enter first name "); 
-      return false;
-  }
-  
-  if(ls=="null" || ls==""){
-       alert("please enter second name")
-       return false; 
-  }
   
  
-  if(fn !=ls){
-     for(i=0;i<usn.length;i++){
-         if(un==usn[i]){
-             alert("this username is already taken please choose another one")
-         }
-        
-     }
-    
-     if(ps == cps){
-        
-        if(em.match(mf)){
-            
-          if(nm.length==10 && nm>=0 ){
-              
-              if($("#ml").prop("checked") || $("#fm").prop("checked") || $("#ot").prop("checked")){
-                  
-                  if(cn !="null" || cn !=""){
-                      
-                       if(dt < cdt){
-                           
-                          if($("#cb").prop("checked")){
-                              return true;
-                                  }
-                           else{
-                               alert("please agree terms and conditions ")
-                               return false;
-                           }
+   if(fn !=ls){
+        for(i=0;i<usn.length;i++){
+            if(un==usn[i]){
+                 alert("this username is already taken please choose another one")
                           }
-                       
-                       else{
-                        alert("please enter valid date")
-                           return false;
-                        }
-                  }
-                  
-                  else{
-                      alert("please select country")
-                      return false;
-                  }
-              }
-              
-             else{
-                alert("please select gender")
-                 return false;
-            }
-           } 
-           else{
-              alert("enter valid number it should contain 10 numbers") 
-               return false;
-              }
-            
-        }
-        else{
-        alert("you entered invalid email id")
-            return false;
-          }
-    }
+		}
+	}
+  
     else{
-      alert("password and confirm password should be same")
-        return false;
-    }
+         alert("first name and last name should not be same")
+          return false;
+          }
+		  
+		  
+ if(un == "null" || un == ""){
+    alert("username is required")
+	
+ }
+
+ else{  
    
-  }
-    
-  else{
-     alert("first name and last name should not be same ")
-      return false;
-  }
+                if(validate(ps)){
+	 
+	                    if(ps==cps){
+        
+                                if(em.match(mf)){
+            
+                                        if(nm.length==10 && nm>=0 ){
+              
+                                                if($("#ml").prop("checked") || $("#fm").prop("checked") || $("#ot").prop("checked")){
+                  
+                                                            if(cn !="null" || cn !=""){
+                      
+                                                                            if(dt < cdt){
+                           
+                                                                                    if($("#cb").prop("checked")){
+                                                                                          return true;
+                                                                                    }
+																						
+																					else{
+                                                                                       alert("please agree terms and conditions ")
+                                                                                      return false;
+                                                                                       }
+																					   
+                                                                            }
+															                else{
+                                                                                  alert("please enter valid date")
+																				  return false;
+																				}
+
+                       
+                                                            }
+                  
+                                                            else{
+                                                                alert("please select country")
+                                                                return false;
+                                                                }
+																
+                                                }
+              
+                                                else{
+                                                    alert("please select gender")
+                                                    return false;
+                                                    }
+													
+                                        } 
+										
+                                        else{
+                                             alert("enter valid number it should contain 10 numbers") 
+                                             return false;
+                                            }
+											
+            
+                                }
+								
+                                else{
+                                    alert("you entered invalid email id")
+                                    return false;
+                                    }
+									
+									
+                        }
+						
+	                    else{
+	                       alert("password and confirm password should be same")
+	                       return false;
+	                       }
+	
+                }
+                
+				else{
+                    alert("the password should contain min 8 charecters and atleast one A-Z,a-z and one number,special character ")
+					return false;
+                    }
+   
+        
+            }
+        
+   
    
 
 });
@@ -187,28 +231,28 @@ $("#sub").click(function(){
     
  <label for="firstname"> FirstName : </label> 
  <input type="text" id="fn" name="firstname" placeholder="enter firstName" pattern="[a-zA-Z ]{3,20}"
-        title="it should contain only characters not more than 15"><br>
+        title="it should contain only characters not more than 15" required><br>
     
  <label for="lastname"> LastName : </label>
  <input type="text" id="ls" namee="lastname" placeholder="enter lastName" pattern="[a-zA-Z ]{3,20}" 
-        title="it should contain only characters not more than 15"><br>
+        title="it should contain only characters not more than 15" required><br>
     
  <label for="username">Username : </label>
- <input type="text" id="un" name="username" placeholder="enter username" pattern="[a-zA-Z][0-9]*{3,20}"><br>
+ <input type="text" id="un" name="username" placeholder="enter username" pattern="[a-zA-Z][0-9]*{3,20}" required><br>
     
  <label for="password">Password :</label>
- <input type="password" id="ps" name="password" placeholder="enter password" pattern="[a-zA-Z][0-9]*{3,20}"><br>
+ <input type="password" id="ps" name="password" placeholder="enter password" required><br>
     
  <label for="cpassword">Confirm<br>Password :</label> 
- <input type="text" id="cps" name="cpassword" placeholder="confirm password" pattern="[a-zA-Z][0-9]*{3,20}"><br>
+ <input type="text" id="cps" name="cpassword" placeholder="confirm password" required><br>
     
   <label for="email">Email id : </label>
- <input type="email" id="em" name="email" placeholder="enter email"><br>
+ <input type="email" id="em" name="email" placeholder="enter email" required><br>
     
-  <label for="email">Mobile No : </label>
- <input type="number" id="nm" name="number" placeholder="enter number"><br>
+  <label for="email">Mobile No : </label> 
+ <input type="number" id="nm" name="number" placeholder="enter number" required><br>
     
- <input type="radio" id="ml" name="gender" value="male">
+ <input type="radio" id="ml" name="gender" value="male" >
  <label for="male">Male</label>
  
  <input type="radio" id="fm" name="gender" value="female">
