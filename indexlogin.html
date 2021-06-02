@@ -20,24 +20,41 @@ $(document).ready(function(){
  
  uspw[usn]=rpsw;
  console.log(uspw);
+ var count=0;
  
  $("#sub").click(function(){
+    
     var usn = $("#usn").val();
-    var ps  = $("#psw").val();
-     
+	var ps  = $("#psw").val();
+	
+     if(count == 3){
+		    alert("You login attempts was completed and if you retried it again your account will be blocked");
+			return false;
+		  }
          
         for(var key in uspw){
+		    
                if(usn == key){
+			    console.log(key);
                  var pw = uspw[usn];
 				 if(ps == pw){
                   return true;
                }
                  if(ps!= pw){
-                  alert("you entered invalid username or password");
+                  alert("you entered invalid password");
+				  count=count+1;
                   return false;
               }
-          }
+          }if(usn!=key){
+		     count=count+1;
+		    alert("Please enter valid username ")
+			return false;
 		  }
+		  
+		  
+		  }
+		  
+
 
 	
 	
